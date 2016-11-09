@@ -33,7 +33,10 @@ int main() {
 		pop.mutation(0.3);
 	}
 
-	pop.best->print();
+	if(pop.best->fitness == 0)
+		pop.best->print();
+	else
+		cout << "The puzzle is not solved." << endl;
 
 	return 0;
 }
