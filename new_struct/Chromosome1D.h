@@ -7,6 +7,13 @@
 #include <string>
 #include <time.h>
 
+ class ParameterAgainstNatureException : public std::exception {
+ public:
+	virtual const char* what() const noexcept override { 
+		return "Something goes against nature. Object cannot be casted.";
+	}
+ };
+
 template <typename E>
 class Chromosome1D {
 	int fitness;
@@ -16,7 +23,7 @@ class Chromosome1D {
 public:
 	// class constructor: construct a dynamic array of genes
 	Chromosome1D(int geneCount) {
-		if(geneCount <= 0) throw "A chromosome must contain 1 or more gene.";
+		if(geneCount <= 0) throw ParameterAgainstNatureException();
 		this->geneCount = geneCount;
 		genes = new E[geneCount];
 

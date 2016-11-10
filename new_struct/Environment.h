@@ -35,7 +35,7 @@ public:
 		}
 	}
 
-	// return answer to the n-queen puzzle as am integer dynamic array (Genes of the best individual)
+	// return answer to the n-queen puzzle as an dynamic integer array (Genes of the best individual)
 	int* getAnswer() { 
 		if (crowd->getBest()->getFitness() == 0)
 			return crowd->getBest()->getGenes();

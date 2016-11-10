@@ -5,7 +5,7 @@
 
 using namespace std;
 
-int main() {
+int main(int argc, char* argv[]) {
 	srand (time(NULL)); //initiate random number generator
 	/*  int cnt;
 	cout << "How many queens? " << endl;

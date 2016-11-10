@@ -5,6 +5,13 @@
 #include <cstdlib>
 #include <time.h>
 
+ class ParameterAgainstNatureException : public std::exception {
+ public:
+	virtual const char* what() const noexcept override { 
+		return "Something goes against nature. Object cannot be casted.";
+	}
+ };
+
 class Population {
 	/*
 	* note that the chromosomes should be declared in the derived class, due to the various approaches
@@ -13,7 +20,12 @@ class Population {
 
 	int size; // population size, number of chromosomes in the system
 public:
-	Population(int size) { this->size = size; } // class constructor
+	// class constructor
+	Population(int size) {
+		if (size <= 0) throw ParameterAgainstNatureException();
+		
+		this->size = size; 
+	} 
 	virtual ~Population() { }
 
 	int getSize() const { return size; }
