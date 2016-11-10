@@ -45,11 +45,11 @@ public:
 	void setBuffer(NQChromosome** newBuffer) { buffer = newBuffer; }
 	void setBuffer(int pos, NQChromosome* newBuffer) { buffer[pos] = newBuffer; }
 
-	virtual int evaluate();
-	virtual void crossover(int count);
+	virtual int evaluate() override;
+	virtual void crossover(int count) override;
 	virtual void populationSelection(int tmSize, bool isElitist);
 	virtual NQChromosome* tournamentSelection(int tmSize);
-	virtual void mutate(double prob);
+	virtual void mutate(double prob) override;
 };
 
 int NQPopulation::evaluate() {

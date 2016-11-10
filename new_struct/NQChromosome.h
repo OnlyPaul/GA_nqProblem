@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <cmath>
+#include <string>
 #include <time.h>
 #include "Chromosome1D.h"
 
@@ -15,7 +16,8 @@ public:
 	virtual void evaluate() override;
 	virtual void crossover(NQChromosome *chromosome);
 	virtual bool mutate(double prob) override;
-	virtual void print() override;
+	virtual std::string toString() override;
+	std::string toBoard();
 };
 
 void NQChromosome::evaluate() {
@@ -61,22 +63,31 @@ bool NQChromosome::mutate(double prob) {
 	return true;
 }
 
-void NQChromosome::print() {
+std::string NQChromosome::toString() {
+	std::string strOut;
+
 	for(int i=0; i < getGeneCount(); i++)
-		std::cout << getGenes(i) << " ";
-	
-	std::cout << std::endl;
+		strOut += std::to_string(getGenes(i)) + " ";
+	strOut += '\n';
+
+	return strOut;
+}
+
+std::string NQChromosome::toBoard() {
+	std::string strOut;
 
 	for(int j=0; j < getGeneCount(); j++) {
 		for(int k=0; k < getGeneCount(); k++) {
 			if(k == getGenes(j)) {
-				std::cout <<" Q ";
+				strOut += " Q ";
 			} else {
-				std::cout << " . ";
+				strOut += " . ";
 			}
 		}
-		std::cout << std::endl;
+		strOut +=  '\n';
     }
+
+	return strOut;
 }
 
 #endif // NQCHROMOSOME_H

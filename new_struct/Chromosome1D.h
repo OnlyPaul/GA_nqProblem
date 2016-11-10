@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <cmath>
+#include <string>
 #include <time.h>
 
 template <typename E>
@@ -40,11 +41,11 @@ public:
 	void setGenes(const int pos, E newVal) { genes[pos] = newVal; }
 
 	virtual void evaluate() = 0;
-	virtual void crossover(Chromosome1D *chromosome) {
+	/* virtual void crossover(Chromosome1D *chromosome) {
 		throw "Cannot match chromosome type.";
-	}
+	} */
 	virtual bool mutate(double prob) = 0;
-	virtual void print() = 0;
+	virtual std::string toString() = 0;
 };
 
 #endif // CHROMOSOME1D_H
