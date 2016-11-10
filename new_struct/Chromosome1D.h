@@ -10,10 +10,12 @@ template <typename E>
 class Chromosome1D {
 	int fitness;
 	int geneCount;
-	E *genes;
+	E *genes; // represent gene/position/value in form of an array, datatype can be varied
 
 public:
+	// class constructor: construct a dynamic array of genes
 	Chromosome1D(int geneCount) {
+		if(geneCount <= 0) throw "A chromosome must contain 1 or more gene.";
 		this->geneCount = geneCount;
 		genes = new E[geneCount];
 
@@ -22,16 +24,18 @@ public:
 
 		this->fitness = -1; //fitness unknown
 	}
+
+	// class destructor is virtual, and can be overridden
 	virtual ~Chromosome1D() { delete [] genes; }
 
-	int getFitness() { return fitness; }
+	int getFitness() const { return fitness; }
 	void setFitness(int newFitness) { fitness = newFitness; }
 
-	int getGeneCount() { return geneCount; }
+	int getGeneCount() const { return geneCount; }
 	void setGeneCount(int newGeneCount) { geneCount = newGeneCount; }
 
 	E* getGenes() { return genes; }
-	E getGenes(const int pos) { return genes[pos]; }
+	E getGenes(const int pos) const { return genes[pos]; }
 	void setGenes(const E* newGenes) { genes = newGenes; }
 	void setGenes(const int pos, E newVal) { genes[pos] = newVal; }
 

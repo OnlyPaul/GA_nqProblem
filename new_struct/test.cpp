@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <time.h>
-#include "NQChromosome.h"
+#include "NQPopulation.h"
 
 using namespace std;
 
@@ -21,7 +21,8 @@ int main() {
 	/*a->mutation(0.4);
 	a->print();*/
 	//  delete population;
-	NQChromosome *a = new NQChromosome(10);
+
+	/*NQChromosome *a = new NQChromosome(10);
 	NQChromosome *b = new NQChromosome(10);
 	a->print();
 	a->crossover(b);
@@ -29,7 +30,15 @@ int main() {
 	a->print();
 
 	delete a;
-	delete b;
+	delete b;*/
+
+	NQPopulation *a = new NQPopulation(5,8);
+
+	a->crossover(8);
+	a->mutate(0.4);
+	cout << a->evaluate() << endl;
+
+	delete a;
 
 	return 0;
 }

@@ -22,7 +22,7 @@ void NQChromosome::evaluate() {
 	int distance; // distance between queens
 	int collision = 0; // how many queens threaten this queen (stay in the same row, column, or diagonal lines)
 
-	if (this->getFitness() <= 0) return; // fitness of this queen is determined
+	if (this->getFitness() >= 0) return; // fitness of this queen is determined
 
 	for(int i=0; i < this->getGeneCount(); i++) {
 		for(int j=i+1; j < this->getGeneCount(); j++) {
@@ -57,7 +57,7 @@ bool NQChromosome::mutate(double prob) {
 		this->setGenes(int(rand()%getGeneCount()), int(rand()%getGeneCount()));
 	} while(((double)rand()/RAND_MAX)<prob);
 
-	this->setFitness(99);
+	this->setFitness(-1);
 	return true;
 }
 
