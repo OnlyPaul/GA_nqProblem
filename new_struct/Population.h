@@ -1,16 +1,20 @@
+#ifndef ParaException
+#define ParaException
+
+class ParameterAgainstNatureException : public std::exception {
+public:
+	virtual const char* what() const noexcept override { 
+		return "Something goes against nature. Object cannot be casted.";
+	}
+};
+#endif // ParaException
+
 #ifndef Population_H
 #define Population_H
 
 #include <iostream>
 #include <cstdlib>
 #include <time.h>
-
- class ParameterAgainstNatureException : public std::exception {
- public:
-	virtual const char* what() const noexcept override { 
-		return "Something goes against nature. Object cannot be casted.";
-	}
- };
 
 class Population {
 	/*
@@ -23,7 +27,7 @@ public:
 	// class constructor
 	Population(int size) {
 		if (size <= 0) throw ParameterAgainstNatureException();
-		
+
 		this->size = size; 
 	} 
 	virtual ~Population() { }
