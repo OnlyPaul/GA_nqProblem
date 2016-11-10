@@ -32,13 +32,20 @@ int main() {
 	delete a;
 	delete b;*/
 
-	NQPopulation *a = new NQPopulation(5,8);
+	int loopCount = 60000;
 
-	a->crossover(8);
-	a->mutate(0.4);
-	cout << a->evaluate() << endl;
+	NQPopulation *pop = new NQPopulation(100,8);
 
-	delete a;
+	while (pop->evaluate() != 0 && --loopCount >= 0) {
+		pop->populationSelection(50, true);
+		pop->crossover(8);
+		pop->mutate(0.3);
+	}
+
+	if(pop->getBest()->getFitness() == 0)
+		pop->getBest()->print();
+	else
+		cout << "The puzzle is not solved." << endl;
 
 	return 0;
 }

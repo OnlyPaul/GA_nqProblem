@@ -47,6 +47,8 @@ public:
 
 	virtual int evaluate();
 	virtual void crossover(int count);
+	virtual void populationSelection(int tmSize, bool isElitist);
+	virtual NQChromosome* tournamentSelection(int tmSize);
 	virtual void mutate(double prob);
 };
 
@@ -77,6 +79,29 @@ void NQPopulation::crossover(int count){
 	
 	for(int i=0; i < count; i+=2)
 		individuals[i]->crossover(individuals[i+1]);
+}
+
+void NQPopulation::populationSelection(int tmSize, bool isElitist) {
+	int i = this->getSize()-1;
+
+	if(isElitist) {
+		setBuffer(i, getBest());
+	}
+	while(--i >= 0)
+		setBuffer(i, tournamentSelection(tmSize));
+}
+
+NQChromosome* NQPopulation::tournamentSelection(int tmSize) {
+	NQChromosome *compIndiv, *tournamentBest;
+
+	tournamentBest = this->getIndividuals((int)(rand()%getSize()));
+	while(--tmSize > 0) {
+		compIndiv = this->getIndividuals((int)(rand()%getSize()));
+		if(tournamentBest->getFitness() > compIndiv->getFitness())
+			tournamentBest = compIndiv;
+	}
+
+	return tournamentBest;
 }
 
 void NQPopulation::mutate(double prob){
