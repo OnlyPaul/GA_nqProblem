@@ -31,6 +31,7 @@ public:
 			delete individuals[i];
 		
 		delete [] individuals;
+		delete [] buffer;
 	}
 
 	int evaluation();
