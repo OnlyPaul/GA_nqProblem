@@ -9,7 +9,7 @@ using namespace std;
 
  class FailedArgumentException : public std::exception {
  public:
-	virtual const char* what() const noexcept override { 
+	virtual const char* what() const noexcept override {
 		return "There is no argument given. Input argument 'help' for instruction.";
 	}
  };
@@ -53,7 +53,7 @@ int main(int argc, char* argv[]) {
 				for(int i=0; i < n; i++)
 					cout << answer[i] << ' ';
 				cout << endl;
-
+      
 				cout << nqueen->getBoardAnswer();
 			} else {
 				cout << endl;

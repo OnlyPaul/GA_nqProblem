@@ -11,6 +11,7 @@
 class NQChromosome : public Chromosome1D<int> {
 public:
 	NQChromosome(int geneCount):Chromosome1D(geneCount) {}
+	NQChromosome(const NQChromosome *nq):Chromosome1D(nq) {}
 	~NQChromosome() {}
 
 	virtual void evaluate() override;
@@ -21,9 +22,8 @@ public:
 };
 
 void NQChromosome::evaluate() {
-	int distance; // distance between queens
-	int collision = 0; // how many queens threaten this queen (stay in the same row, column, or diagonal lines)
-
+	int distance; // distance between the queens
+	int collision = 0; // how many queens threaten this queen
 	if (this->getFitness() >= 0) return; // fitness of this queen is determined
 
 	for(int i=0; i < this->getGeneCount(); i++) {
@@ -39,7 +39,7 @@ void NQChromosome::evaluate() {
 }
 
 void NQChromosome::crossover(NQChromosome *chromosome) {
-	int crossoverpoint = (int)(rand()%getGeneCount() ); // random the point of crossover
+	int crossoverpoint = (int)(rand()%getGeneCount() ); // random
 	int help; // swapping buffer
 
 	for(int i=crossoverpoint; i < this->getGeneCount(); i++) {

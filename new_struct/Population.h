@@ -41,5 +41,4 @@ public:
 	virtual void mutate(double prob) = 0;
 };
 
-
 #endif // Population_H

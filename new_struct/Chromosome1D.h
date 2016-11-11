@@ -3,7 +3,7 @@
 
 class ParameterAgainstNatureException : public std::exception {
 public:
-	virtual const char* what() const noexcept override { 
+	virtual const char* what() const noexcept override {
 		return "Something goes against nature. Object cannot be casted.";
 	}
 };
@@ -36,6 +36,11 @@ public:
 			genes[i] = (int)((rand()%geneCount));
 
 		this->fitness = -1; //fitness unknown
+	}
+
+	Chromosome1D(const Chromosome1D *other)
+			: fitness(other->fitness), geneCount(other->geneCount), genes(new E[other->geneCount]) {
+		std::copy(other->genes, other->genes + other->geneCount, genes);
 	}
 
 	// class destructor is virtual, and can be overridden
