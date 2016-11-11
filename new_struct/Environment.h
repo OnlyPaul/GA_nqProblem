@@ -33,7 +33,6 @@ public:
 			crowd->populationSelection(tmSize, isElitist);
 			crowd->crossover(crowd->getSize());
 			crowd->mutate(mutProb);
-			std::cout << getStrAnswer() << "Fitness: " << crowd->evaluate() << std::endl;
 		}
 	}
 
