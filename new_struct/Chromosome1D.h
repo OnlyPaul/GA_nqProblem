@@ -1,15 +1,3 @@
-#ifndef ParaException
-#define ParaException
-
-class ParameterAgainstNatureException : public std::exception {
-public:
-	virtual const char* what() const noexcept override { 
-		return "Something goes against nature. Object cannot be casted.";
-	}
-};
-#endif // ParaException
-
-
 #ifndef CHROMOSOME1D_H
 #define CHROMOSOME1D_H
 
@@ -18,6 +6,13 @@ public:
 #include <cmath>
 #include <string>
 #include <time.h>
+
+ class ParameterAgainstNatureException : public std::exception {
+ public:
+	virtual const char* what() const noexcept override { 
+		return "Something goes against nature. Object cannot be casted.";
+	}
+ };
 
 template <typename E>
 class Chromosome1D {
