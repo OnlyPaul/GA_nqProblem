@@ -10,11 +10,11 @@
 /*
 * Environment class (or so-called Genetic-Algorithm class) serves as the control sequence of the population.
 * Think of this as the interface controlling when the population will evaluate,
-* cross over, or mutate. That is, natural selection is the effect from environment to 
+* cross over, or mutate. That is, natural selection is the effect from environment to
 * the living organism.
 *
-* At the same time, Environment encapsulates the chromosomes in the swarm, 
-* so that the client program (main program) does not directly access or mess 
+* At the same time, Environment encapsulates the chromosomes in the swarm,
+* so that the client program (main program) does not directly access or mess
 * with the interior data
 */
 class Environment {
@@ -28,6 +28,7 @@ public:
 	~Environment() { delete crowd; } // Class destructor
 
 	void natSelection(int cycleCount, int tmSize, bool isElitist, double mutProb) {
+
 		while (crowd->evaluate() != 0 && --cycleCount >= 0) {
 			crowd->populationSelection(tmSize, isElitist);
 			crowd->crossover(crowd->getSize());
@@ -36,7 +37,7 @@ public:
 	}
 
 	// return answer to the n-queen puzzle as an dynamic integer array (Genes of the best individual)
-	int* getAnswer() { 
+	int* getAnswer() {
 		if (crowd->getBest()->getFitness() == 0)
 			return crowd->getBest()->getGenes();
 		else
