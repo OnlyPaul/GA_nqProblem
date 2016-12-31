@@ -3,10 +3,10 @@
  */
 public class NQClient {
     public static void main(String[] args) {
-        int n = 8;
+        int n = 11;
         int popsize = 5000;
         int gencnt = 5000;
-        int tmsize = 500;
+        int tmsize = 50;
         double mutprob = 0.2;
 
         Environment nqueen = new Environment(popsize, n);

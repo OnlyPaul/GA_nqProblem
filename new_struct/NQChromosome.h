@@ -10,7 +10,10 @@
 
 class NQChromosome : public Chromosome1D<int> {
 public:
-	NQChromosome(int geneCount):Chromosome1D(geneCount) {}
+	NQChromosome(int geneCount):Chromosome1D(geneCount) {
+		for (int i=0; i < getGeneCount(); i++)
+			setGenes(i,(int)((rand()%getGeneCount())));
+	}
 	NQChromosome(const NQChromosome *nq):Chromosome1D(nq) {}
 	~NQChromosome() {}
 

@@ -32,9 +32,6 @@ public:
 		this->geneCount = geneCount;
 		genes = new E[geneCount];
 
-		for (int i=0; i < geneCount; i++)
-			genes[i] = (int)((rand()%geneCount));
-
 		this->fitness = -1; //fitness unknown
 	}
 

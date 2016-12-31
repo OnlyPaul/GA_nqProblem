@@ -10,9 +10,13 @@ public class Environment {
 
     public void natSelection(int cycleCount, int tmSize, boolean isElitist, double mutProb) {
         while (crowd.evaluate() != 0 && --cycleCount >= 0) {
+            long startTime = System.currentTimeMillis();
             crowd.populationSelection(tmSize, isElitist);
             crowd.crossover(crowd.getSize());
             crowd.mutate(mutProb);
+            long elapseTime = System.currentTimeMillis() - startTime;
+            System.out.println(cycleCount + ": " + crowd.getBest().getFitness() + " " + elapseTime);
+            System.out.println(crowd.getBest().toString());
         }
     }
 
